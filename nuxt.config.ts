@@ -1,7 +1,11 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+const isGitHubPages = process.env.GITHUB_ACTIONS === 'true'
+const baseURL = isGitHubPages ? '/fin_manager/' : '/'
+
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
+  ssr: false,
 
   modules: [
     '@pinia/nuxt',
@@ -13,6 +17,7 @@ export default defineNuxtConfig({
   css: ['~/assets/scss/main.scss'],
 
   app: {
+    baseURL,
     head: {
       title: 'Финансовый менеджер',
       meta: [
@@ -22,13 +27,15 @@ export default defineNuxtConfig({
         { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' }
       ],
       link: [
-        { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' }
+        { rel: 'apple-touch-icon', href: `${baseURL}apple-touch-icon.png` }
       ]
     }
   },
 
   pwa: {
     registerType: 'autoUpdate',
+    scope: baseURL,
+    base: baseURL,
     manifest: {
       name: 'Финансовый менеджер',
       short_name: 'Расходы',
@@ -37,9 +44,11 @@ export default defineNuxtConfig({
       background_color: '#0f0f1a',
       display: 'standalone',
       orientation: 'portrait',
+      scope: baseURL,
+      start_url: baseURL,
       icons: [
         {
-          src: '/icon.svg',
+          src: 'icon.svg',
           sizes: 'any',
           type: 'image/svg+xml',
           purpose: 'any maskable'
@@ -47,7 +56,7 @@ export default defineNuxtConfig({
       ]
     },
     workbox: {
-      navigateFallback: '/',
+      navigateFallback: isGitHubPages ? '/fin_manager/' : '/',
       globPatterns: ['**/*.{js,css,html,png,svg,ico,woff2}'],
       runtimeCaching: [
         {
