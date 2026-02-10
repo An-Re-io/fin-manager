@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 const isGitHubPages = process.env.GITHUB_ACTIONS === 'true'
-const baseURL = isGitHubPages ? '/fin_manager/' : '/'
+const baseURL = isGitHubPages ? '/fin-manager/' : '/'
 
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
@@ -56,7 +56,7 @@ export default defineNuxtConfig({
       ]
     },
     workbox: {
-      navigateFallback: isGitHubPages ? '/fin_manager/' : '/',
+      navigateFallback: isGitHubPages ? '/fin-manager/' : '/',
       globPatterns: ['**/*.{js,css,html,png,svg,ico,woff2}'],
       runtimeCaching: [
         {
