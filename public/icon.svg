@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="96" fill="#1a1a2e"/>
+  <circle cx="256" cy="200" r="80" fill="#6366f1"/>
+  <path d="M160 340 h192 a80 80 0 0 1 80 80 v32 H80 v-32 a80 80 0 0 1 80-80z" fill="#6366f1"/>
+  <text x="256" y="480" text-anchor="middle" fill="#fff" font-size="48" font-family="system-ui" font-weight="600">RSD</text>
+</svg>
